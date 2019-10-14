@@ -1,2 +1,26 @@
-<h1>eerste titel</h1>
-<h2>tweede titel</h2>
+<script>
+	function mijnFunctie(){
+		var eerstegetal = document.getElementById("eerstegetal").value;
+		var tweedegetal = document.getElementById("tweedegetal").value;
+		var uitkomst = parseInt(eerstegetal) + parseInt(tweedegetal);
+		document.getElementById("eenid").innerHTML = uitkomst;
+	}
+
+</script>
+
+
+<style>
+	
+	h1#eenid{
+		background-color: yellow;
+	}
+
+</style>
+
+<h1> eerste getal
+<input type=text id=eerstegetal>
+</h1>
+
+<h1>tweede getal <input type=text id=tweedegetal> </h1>
+
+<h1 onclick="mijnFunctie()" id="eenid">klik hier voor de uitkomst</h1>
