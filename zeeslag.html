@@ -1,0 +1,58 @@
+<html>
+    <head>
+        <style>
+            td.water {
+                background-color:gray;
+            } 
+            .boot {
+                background-color:gray;
+            }
+        </style>
+
+        <script>
+            // DOM
+            var count = 0;
+            var geklikt = [0, 0, 0, 0];
+
+            function schieten(bootofwater, vakje, nummer){
+                if (geklikt[nummer]==1){
+                    alert("Hier heb je al geschoten");
+                    return;
+                } else {
+                    geklikt[nummer] = 1;
+                }
+                console.log(geklikt);
+                
+                if (bootofwater=='water'){   
+                    vakje.style.backgroundColor = 'blue';
+                    document.getElementById("commentaar").innerHTML = "Plons"
+                    
+                } else {
+                    vakje.style.backgroundColor = 'red';
+                    document.getElementById("commentaar").innerHTML = "Raak"
+                    if (count==0){
+                        count++;
+                    } else {
+                        alert("hij is gezonken");
+                    }
+
+                    }
+                    
+                }      
+            
+            
+        </script>
+    </head>
+
+    <body>
+        <table border=1>
+            <tr>
+                <td class=water onclick="schieten('water', this, 0)">test</td>
+                <td class=boot onclick="schieten('boot', this, 1)">test</td>
+                <td class=boot onclick="schieten('boot',this, 2)">test</td>
+                <td class=water onclick="schieten('water',this, 3)">test</td>
+            </tr>
+        </table>
+        <div id=commentaar> </div>
+    </body>
+</html>
