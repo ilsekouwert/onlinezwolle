@@ -2,6 +2,9 @@
 	function mijnFunctie(){
 		var eerstegetal = document.getElementById("eerstegetal").value;
 		var tweedegetal = document.getElementById("tweedegetal").value;
+		console.log("waarde 1: " + eerstegetal);
+		console.log("waarde 2: " + tweedegetal);
+		
 		var uitkomst = parseInt(eerstegetal) + parseInt(tweedegetal);
 		document.getElementById("eenid").innerHTML = uitkomst;
 	}
@@ -17,12 +20,13 @@
 
 </style>
 
-<h1> eerste getal
+<h1> Eerste getal</h1>
 <input type=text id=eerstegetal>
-</h1>
 
-<h1>tweede getal <input type=text id=tweedegetal> </h1>
 
-<h1 onclick="mijnFunctie()" > klik hier voor de uitkomst </h1>
+<h1>Tweede getal </h1>
+<input type=text id=tweedegetal> 
 
-<h1 id="eenid"> </h1>
+<input type=button value="klik hier voor de uitkomst" onclick="mijnFunctie()" >
+
+<h1 id="eenid"> Uitkomst </h1>
