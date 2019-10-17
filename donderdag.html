@@ -1,0 +1,44 @@
+<html>
+    <head>
+        <style>
+        </style>
+
+        <script>
+            function teruggaveinvoer(){
+                var ingevuld = document.getElementById("invoer").value;
+
+                var mijnObject = {};
+                // {} = symbool voor object
+                mijnObject.achternaam = ingevuld;
+                mijnObject.voornaam = "Ilse";
+                console.log(mijnObject);
+                // Serialiseren = moet je doen om het object te versturen of op te slaan.
+
+                var moJSON = JSON.stringify(mijnObject);
+                console.log(moJSON);
+                localStorage.setItem('mijnkey', moJSON);
+
+                alert(ingevuld);
+            }
+
+            function getStorageItem(){
+                var uitgelezen = localStorage.getItem('mijnkey');
+                var uObj = JSON.parse(uitgelezen);
+                console.log(uitgelezen);
+                console.log(uObj);
+                alert(uitgelezen.voornaam); //geeft undefined weer
+                alert(uObj.voornaam);
+            }
+
+            
+
+
+        </script>
+    </head>
+
+    <body>
+        <input type=text id="invoer">
+        <input type=button value="Klik om de invoer weer te geven" onclick=teruggaveinvoer()>
+        <input type=button value = "Get Item" onclick= getStorageItem()>
+    </body>
+</html>

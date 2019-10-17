@@ -1,0 +1,263 @@
+<html>
+    <head>
+        <style>
+        
+        table {
+            overflow:hidden;
+        }
+
+        tr, td{
+            border: 3px solid red;
+            height: 40px;
+            width: 50px;
+    
+        }
+
+        td, th{
+            position: relative;
+        }
+        
+      
+
+        td:hover::after,
+        th:hover::after {
+            content: '';  
+            height: 10000px;
+            left: 0;
+            position: absolute;  
+            top: -5000px;
+            width: 100%;
+            z-index: -1;
+            background-color: lightblue;
+        }
+
+        </style>
+
+        <script>
+
+        var aantalKlikken = 0;
+        var veldIndeling = ["", "", "", "", "", "", ""]
+                            
+
+
+             
+             
+            function spelstart(){
+                if (document.getElementById("naam1").value){
+                    var speler1 = document.getElementById("naam1").value;
+                    document.getElementById("eenid").innerHTML = speler1 + " begint en speelt met geel.";
+                } else {
+                    document.getElementById("eenid").innerHTML = "Speler 1 begint en speelt met geel.";
+                }
+            }
+            
+            function hover(hetElem){
+                var table = document.getElementById("table1");
+                for (var x = table.rows.length-1; x>=0; x--){
+                    for (var y = table.rows[x].length-1; y>=0; y--){
+                        if (table.rows[x].cells[y] == hetElem){
+                            if (table.rows[x].cells[y].style.backgroundColor == 'yellow'){}
+                            else if (table.rows[x].cells[y].style.backgroundColor == 'red'){}
+                            else {
+                                table.rows[x].cells[y].style.backgroundColor = 'grey'
+                            }
+                            
+                        }
+                    } 
+                }
+            }
+
+            /* function vakjeKleuren(rij, kolom){
+                var table = document.getElementById("table1");
+                for (var x = table.rows.length-1; x>=0; x--){
+                    for (var y = table.rows[x].length-1; y>=0; y--){
+                        if (y == kolom){
+                            if (x == rij){
+                                if (table.rows[x].cells[y].style.backgroundColor == 'yellow'){}
+                                else if (table.rows[x].cells[y].style.backgroundColor == 'red'){}
+                                else {
+                                table.rows[x].cells[y].style.backgroundColor = 'grey'}
+                            }
+                        }
+                    }
+                }
+            } */
+
+            function normal(hetElem){
+                var table = document.getElementById("table1");
+                var kolomIndex = hetElem.cellIndex;
+                hetElem.style.backgroundColor = null;
+            }
+        
+            function actie(hetElem){
+                                                                
+                var table = document.getElementById("table1");
+                var kolomIndex = hetElem.cellIndex;
+                console.log(kolomIndex);
+                var alleCellenInKolom = document.getElementsByClassName(kolomIndex);
+                var x;
+                
+
+                for (x = table.rows.length-1; x>=0; x--){
+                    
+                    if (table.rows[x].cells[kolomIndex].style.backgroundColor == 'red' | table.rows[x].cells[kolomIndex].style.backgroundColor == 'yellow') {
+                        
+                    } else if (aantalKlikken % 2 == 0) {
+                        table.rows[x].cells[kolomIndex].style.backgroundColor = 'yellow';
+                        aantalKlikken++;
+                        veldIndeling[kolomIndex] = veldIndeling[kolomIndex] + "y";
+                        // veldIndeling[x][kolomIndex] = veldIndeling[x][kolomIndex] + "y";
+                        break;
+                    } else { 
+                        table.rows[x].cells[kolomIndex].style.backgroundColor = 'red';
+                        aantalKlikken++;
+                        veldIndeling[kolomIndex] = veldIndeling[kolomIndex] + "r";
+                        // veldIndeling[x][kolomIndex] = veldIndeling[x][kolomIndex] + "r";
+                        break;
+                    }
+
+                    if (x==0){
+                    alert("Deze rij is al vol, klik op een andere rij");
+                    break;
+                    }
+                }
+
+                kolomchecker: for (var k=0; k<veldIndeling.length; k++){
+                    if (veldIndeling[k].length==4){
+                        if (veldIndeling.find(a => a.includes("yyyy"))){
+                            if (document.getElementById("naam1").value){
+                                var speler1 = document.getElementById("naam1").value;
+                                document.getElementById("winnaar").innerHTML = speler1 + " heeft gewonnen, gefeliciteerd!";
+                            } else {
+                                document.getElementById("winnaar").innerHTML = "Speler 1 heeft gewonnen, gefeliciteerd!";
+                            }
+                            break kolomchecker;
+                        }
+                            
+                            
+                        } else if (veldIndeling.find(a => a.includes("rrrr"))) {
+                            if (document.getElementById("naam2").value){
+                                var speler2 = document.getElementById("naam2").value;
+                                document.getElementById("winnaar").innerHTML = speler2 + " heeft gewonnen, gefeliciteerd!";
+                            } else {
+                                document.getElementById("winnaar").innerHTML = "Speler 2 heeft gewonnen, gefeliciteerd!";
+                            }
+                            break kolomchecker;
+                        }
+                    }
+
+                /* rijenchecker: for (var k=0; k<veldIndeling[x].length; k++){
+                    if (veldIndeling[x][k].length==4){
+                        if (veldIndeling.find(a => a.includes("yyyy"))){
+                            if (document.getElementById("naam1").value){
+                                var speler1 = document.getElementById("naam1").value;
+                                document.getElementById("winnaar").innerHTML = speler1 + " heeft gewonnen, gefeliciteerd!";
+                            } else {
+                                document.getElementById("winnaar").innerHTML = "Speler 1 heeft gewonnen, gefeliciteerd!";
+                            }
+                            break rijenchecker;
+                        }
+                            
+                            
+                        } else if (veldIndeling.find(a => a.includes("rrrr"))) {
+                            if (document.getElementById("naam2").value){
+                                var speler2 = document.getElementById("naam2").value;
+                                document.getElementById("winnaar").innerHTML = speler2 + " heeft gewonnen, gefeliciteerd!";
+                            } else {
+                                document.getElementById("winnaar").innerHTML = "Speler 2 heeft gewonnen, gefeliciteerd!";
+                            }
+                            break rijenchecker;
+                        }
+                    } */
+
+                    console.log(veldIndeling);
+                    
+
+
+            }
+
+                
+
+                
+        
+
+                
+               
+        
+
+        </script>
+    </head>
+
+    <body> 
+        <h1 > Welkom bij 4-op-1 rij </h1>
+        <h4> Naam speler 1
+        <input type=text id="naam1"> 
+        Naam speler 2
+        <input type=text id="naam2">
+        
+        <input type=button value="Klik om het spel te starten" onclick="spelstart()">
+        </h4>
+        <h4 id = "eenid"> </h4>
+        <h2> </h2>
+
+        <table id="table1"> 
+            <tr>
+                <td class= "col1" onclick="actie(this)"> </td>
+                <td class= "col2" onclick="actie(this)"> </td>
+                <td class= "col3" onclick="actie(this)"> </td>
+                <td class= "col4" onclick="actie(this)"> </td>
+                <td class= "col5" onclick="actie(this)"></td>
+                <td class= "col6" onclick="actie(this)"></td>
+                <td class= "col7" onclick="actie(this)"></td>
+            </tr>
+            <tr>
+                <td class= "col1" onclick="actie(this)"></td>
+                <td class= "col2" onclick="actie(this)"></td>
+                <td class= "col3" onclick="actie(this)"></td>
+                <td class= "col4" onclick="actie(this)"></td>
+                <td class= "col5" onclick="actie(this)"></td>
+                <td class= "col6" onclick="actie(this)"></td>
+                <td class= "col7" onclick="actie(this)"></td>
+            </tr>
+            <tr>
+                <td class= "col1" onclick="actie(this)"></td>
+                <td class= "col2" onclick="actie(this)"></td>
+                <td class= "col3" onclick="actie(this)"></td>
+                <td class= "col4" onclick="actie(this)"></td>
+                <td class= "col5" onclick="actie(this)"></td>
+                <td class= "col6" onclick="actie(this)"></td>
+                <td class= "col7" onclick="actie(this)"></td>
+            </tr>
+            <tr>
+                <td class= "col1" onclick="actie(this)"></td>
+                <td class= "col2" onclick="actie(this)"></td>
+                <td class= "col3" onclick="actie(this)"></td>
+                <td class= "col4" onclick="actie(this)"></td>
+                <td class= "col5" onclick="actie(this)"></td>
+                <td class= "col6" onclick="actie(this)"></td>
+                <td class= "col7" onclick="actie(this)"></td>
+            </tr>
+            <tr>
+                <td class= "col1" onclick="actie(this)"></td>
+                <td class= "col2" onclick="actie(this)"></td>
+                <td class= "col3" onclick="actie(this)"></td>
+                <td class= "col4" onclick="actie(this)"></td>
+                <td class= "col5" onclick="actie(this)"></td>
+                <td class= "col6" onclick="actie(this)"></td>
+                <td class= "col7" onclick="actie(this)"></td>
+            </tr>
+            <tr>
+                <td class= "col1" onclick="actie(this)"></td>
+                <td class= "col2" onclick="actie(this)"></td>
+                <td class= "col3" onclick="actie(this)"></td>
+                <td class= "col4" onclick="actie(this)"></td>
+                <td class= "col5" onclick="actie(this)"></td>
+                <td class= "col6" onclick="actie(this)"></td>
+                <td class= "col7" onclick="actie(this)"></td>
+            </tr>
+        </table>
+        <h4 id= "winnaar">  </h4>
+
+        
+    </body>
+</html>

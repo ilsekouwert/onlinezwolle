@@ -1,0 +1,44 @@
+<html>
+    <head>
+        <style>
+            
+
+        </style>
+        <script>
+            function getStorageItem(){
+                var table = document.getElementById("table1");
+
+                var aanmelding = localStorage.getItem('nieuweKey');
+                var aObj = JSON.parse(aanmelding);
+                console.log(aanmelding);
+                console.log(aObj);
+
+                for (x = 0; x<table.rows.length; x++){
+                    if(table.rows[x].innerHTML == ""){
+                    }
+                    else {
+                        table.rows[x] = document.getElementById("naam").innerHTML = aObj.name;
+                        table.rows[x] = document.getElementById("niveau").innerHTML = aObj.level;
+                        table.rows[x] = document.getElementById("leeftijd").innerHTML = aObj.age;
+                    }
+                }    
+            }
+        </script>
+    </head>
+
+    <body>
+        <input type=button value = "Zie inschrijvingen" onclick= getStorageItem()>
+        <table id="table1">
+            <tr>
+                <td id="naam"></td>
+                <td id="niveau"></td>
+                <td id="leeftijd"></td>
+            </tr>
+            <tr>
+                <td id="naam"></td>
+                <td id="niveau"></td>
+                <td id="leeftijd"></td>
+            </tr>
+        </table>
+    </body>
+</html>
