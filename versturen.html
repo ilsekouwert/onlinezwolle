@@ -1,0 +1,28 @@
+<html>
+    <head>
+        <style>
+        </style>
+
+        <script>
+            function actie(){
+                var xhr = new XMLHttpRequest();
+                xhr.onreadystatechange = function(){
+                    alert(this.responseText);
+                }        
+                xhr.open("GET", "https://catfact.ninja/fact", true); //true betekent asynchrone uitvoer van de functie
+                xhr.send();
+            }
+
+            
+
+
+        </script>
+    </head>
+
+    <body>
+        <input type=text id=voornaam>
+        <input type="text" id = achternaam>
+        <input type=button value="Klik hier" onclick=actie()>
+        
+    </body>
+</html>

@@ -1,0 +1,30 @@
+<html>
+    <head>
+        <style>
+        </style>
+        <script>
+            function opslaanInvoer(){
+                var naam = document.getElementById("naam").value;
+                var niveau = document.getElementById("niveau").value;
+                var leeftijd = document.getElementById("leeftijd").value;
+
+                var objectInschrijven = {};
+                objectInschrijven.name = naam;
+                objectInschrijven.level = niveau;
+                objectInschrijven.age = leeftijd;
+
+                var oiJSON = JSON.stringify(objectInschrijven);
+                console.log(oiJSON);
+                localStorage.setItem('nieuweKey', oiJSON);
+
+            }
+        </script>
+    </head>
+
+    <body>
+        <h4> Naam <input type="text" id="naam"> </h4> 
+        <h4> Niveau <input type="text" id="niveau"> </h4> 
+        <h4> Leeftijd <input type="text" id="leeftijd"> </h4> 
+        <input type=button value="Opslaan" onclick=opslaanInvoer()>
+    </body>
+</html>
